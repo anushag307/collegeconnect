@@ -263,8 +263,8 @@ function parseTiles(jsonArray, grid_table, list_source, list_type, list_id,fetch
         }
         else if(item.type == "2"){  //event
             var html = '<div class="grid-item"><div class="card menu-category" style="background: white;"><a target="_blank" href="https://www.stumagz.com/'+
-                            item.link+"/"
-                        '"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
+                            item.link+
+			'/"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
                             item.cover+
                         'stryimg)"><p class="tile-category"><span>'+
                             item.category+

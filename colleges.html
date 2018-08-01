@@ -176,7 +176,7 @@
         
 <link rel="stylesheet" href="https://www1.stumagz.com/public/css/profile.css?v1.0.4">
         <link rel="stylesheet" href="https://www1.stumagz.com/public/css/landingpage.css?v1.0.4.1">
-            <link rel="stylesheet" href="https://www.stumagz.com/public/css/styles.css?v1.0.4.1">
+	    
 
         <script src="https://www.stumagz.com/public/js/masonry.pkgd.js?v1.0.4.1"></script>
         <script src="https://www1.stumagz.com/public/js/modernizr.custom.js?v1.0.4.1"></script>
@@ -209,6 +209,65 @@ and (min-device-width : 1024px) and (max-device-width : 1024px) and (min-device-
 		display: none
 	}
 }
+
+	
+.menu-category {
+ display: inline-block;
+ margin-top: 5%;
+ margin-bottom: 5%;
+ width: 90%;
+ margin-bottom: 10px;
+}
+@media (max-width: 480px){
+	.menu-category {
+ 		margin-left:  0%;
+ 		width: 100%;
+	}
+
+}
+
+.outer
+{
+	margin: 1px;
+}
+
+.card
+{
+	padding-bottom: 0px;
+	/*box-shadow: 0.0px 0.0px 0.5px 0.0px rgb(125,125,125) ;
+	-webkit-box-shadow:0.0px 0.0px 0.5px 0.0px rgb(125,125,125) ;
+	-moz-box-shadow:0.0px 0.0px 0.5px 0.0px rgb(125,125,125) ;*/
+	border: 1px solid #f4f4f4;
+	/*box-shadow: rgba(0,0,0,0.12) 9px 12px 14px -11px;*/
+}
+
+.coverpic
+{
+	height: 160px;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.tile-category{
+	   margin-top: 0px;
+    padding-top: 12px;
+}
+.tile-category span{
+	background: rgba(0,0,0,0.4);
+    border-radius: 2px;
+    margin-top: 15px;
+    margin-left: 12px;
+    border: 1px solid white;
+    /* height: 30px; */
+    color: white;
+    font-size: 12px;
+    padding:5px;
+    text-transform: capitalize;
+}
+
+
 
         </style>        
 
@@ -284,7 +343,7 @@ function parseTiles(jsonArray, grid_table, list_source, list_type, list_id,fetch
         }
         else if(item.type == "2"){  //event
             var html = '<div class="grid-item"><div class="card menu-category" style="background: white;"><a target="_blank" href="https://www.stumagz.com/'+
-                            item.link+"/"
+                            item.link+"/"+
                         '"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
                             item.cover+
                         'stryimg)"><p class="tile-category"><span>'+
