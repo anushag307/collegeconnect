@@ -93,7 +93,7 @@
 
 
         <section id="service" class="service">
-            <iframe src="https://www.stumagz.com/iframe/events/jhub" width="100%" height="100%" style="position: absolute"></iframe>
+            <div id="masonry-grid"></div>
         </section>
 
 
@@ -133,6 +133,320 @@
                 background-color:rgba(255, 0, 0, 0.95);
             }
         </style>
+        
+<link rel="stylesheet" href="https://www.stumagz.com/public/css/profile.css?v1.0.4">
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/landingpage.css?v1.0.4.1">
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/jquery-ui.min.css?v1.0.4.1">
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/bootstrap.min.css?v1.0.4.1">
+            <link rel="stylesheet" href="https://www.stumagz.com/public/css/styles.css?v1.0.4.1">
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/font-awesome.css?v1.0.4.1">
+        <link href="https://www.stumagz.com/public/css/jquery.tagit.css?v1.0.4.1" rel="stylesheet" type="text/css">
+                <link href="https://www.stumagz.com/public/css/tagit.ui-zendesk.css?v1.0.4.1" rel="stylesheet" type="text/css">
+                <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/snackbar.min.css?v1.0.4.1">
 
+                <script src="https://www.stumagz.com/public/js/jquery.min.js?v1.0.4.1"></script>
+                <script src="https://www.stumagz.com/public/js/jquery-ui.min.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/masonry.pkgd.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/modernizr.custom.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/bootstrap.min.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/tag-it.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/notifications.js?v1.0.6.1"></script>
+        <script src="https://www.stumagz.com/public/js/sweetalert.min.js?v1.0.4.1"></script>
+        <script src="https://www.stumagz.com/public/js/snackbar.js?v1.0.4.1"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script src="https://www.stumagz.com/public/js/iziModal.min.js?v1.0.6"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/sweetalert.css?v1.0.4.1">
+        <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/stumagz_alert.css?v1.0.4.1">
+        <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/style5.css?v1.0.4.1" />
+        <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/login_popup.css?v1.0.6.1" />
+        <link rel="stylesheet" type="text/css" href="https://www.stumagz.com/public/css/bday.css?v1.0.4.1" />
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/iziModal.min.css?v1.0.6">
+        <link rel="stylesheet" href="https://www.stumagz.com/public/css/stumagztheme.css?v1.0.6">
+
+
+        <script>
+
+
+
+
+
+function parseTiles(jsonArray, grid_table, list_source, list_type, list_id,fetchPost = false)
+{
+    //code to prepare tile content and append it to table;
+    $(jsonArray).each( function(i, item) {
+        if(item.type == "1"){  //story
+            var html = '<div class="grid-item">'+
+                                        '<div class="card menu-category" style="background: white;">'+
+                                                '<a target="_blank" href="https://www.stumagz.com/'+
+                                                    item.link+"/"+
+                                                    '">'+
+                                                    '<div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
+                                                    item.cover+
+                                                'stryimg)">'+
+                                                        '<p class="tile-category"><span>'+
+                                                        item.category+
+                                                        '</span></p>'+
+                                                        '</div>'+
+                                                    '<div class="outer">'+
+                                                        '<div class="inner1">'+
+                                                                '<div class="story_title">'+
+                                                                        '<h2>'+
+                                                                                (item.title?item.title:'')+
+                                                                        '</h2>'+
+                                                                '</div>'+
+                                                                '<div class="description">'+
+                                                                    '<p>'+
+                                                                                (item.descr?item.descr.substring(0,100):'')+
+                                                                    '</p>'+
+                                                                '</div>'+
+                                                        '</div>'+
+                                                        '<div class="inner2">'+
+                                                            '<div style="width:73%; overflow:hidden; float:left;">'+
+                                                                '<div style="float:left">'+
+                                                                        '<img class="image-details" src="http://cdn.stumagz.com/images/'+
+                                                                                item.auth.profile+
+                                                                                    'profilepic">'+
+                                                                '</div>'+
+                                                            '<div style="padding-left: 45px">'+
+                                                            '<div class="author_name">'+
+                                                                    '<h4>'+
+                                                                            item.auth.title.substring(0,20)+
+                                                                    '</h4>'+
+                                                                    '</div>'+
+                                                                            '<div class="clgname">'+
+                                                                                    '<p>'+
+                                                                                            (item.auth.home_magz_name?item.auth.home_magz_name:(item.magz?item.magz.title:'Other'))+
+                                                                                    '</p>'+
+                                                                            '</div>'+
+                                                                    '</div>'+
+                                                         '</div>'+
+                                                         '<div style="width:25%; overflow:hidden; float:right;margin-top:15px;text-align:center;">'+
+                                                                    '<a href="#" ><span style="margin-right:5px;">'+
+                                                                                        formatLikeCount(item.like_count)+
+                                                                                        '</span><div class="'+(item.is_like?'heart-liked':'heart')+'" alt="Like"/></div></a></div><div style="clear: both">'+
+                                                                                    '</div>'+
+                                                                                '</div>'+
+                                                                            '</div>'+
+                                                                        '</a>'+
+                                                                '</div>'+
+                                                        '</div>';
+
+            var $items = $(html);
+            grid_table.append($items).masonry('appended', $items);
+        }
+        else if(item.type == "2"){  //event
+            var html = '<div class="grid-item"><div class="card menu-category" style="background: white;"><a target="_blank" href="https://www.stumagz.com/'+
+                            item.link+"/"
+                        '"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
+                            item.cover+
+                        'stryimg)"><p class="tile-category"><span>'+
+                            item.category+
+                        '</span></p></div><div class="outer"><div class="inner1"><div class="story_title"><h2>'+
+                            (item.title?item.title:'')+
+                        '</h2></div><div class="description"><p>'+
+                            (item.descr?item.descr.substring(0,100):'')+
+                        '</p></div></div><div class="events-details"><div><div class="loc" style="float:left"><p><i class="fa fa-map-marker" style="padding-right:10px;"></i>'+
+                            (item.loc?item.loc:'')+
+                        '</p></div><div class="loc" style="float:right"><p><i class="fa fa-clock-o" style="padding-right:10px;"></i>'+
+                            (item.date?getStumagzEventDate(item.date):'')+
+                        '</p></div></div><div style="clear: both"></div></div><div class="inner2"><div style="width:73%; overflow:hidden; float:left;"><div style="float:left"><img class="image-details" src="http://cdn.stumagz.com/images/'+
+                            item.auth.profile+
+                        'profilepic"></div><div style="padding-left: 45px"><div class="author_name"><h4>'+
+                            item.auth.title.substring(0,20)+
+                        '</h4></div><div class="clgname"><p>'+
+                            (item.auth.home_magz_name?item.auth.home_magz_name:(item.magz?item.magz.title:'Other'))+
+                        '</p></div></div></div><div></div><div style="width:25%; overflow:hidden; float:right;margin-top:15px;text-align:center;"><a href="#" ><span style="margin-right:5px;">'+
+                            formatLikeCount(item.like_count)+
+                        '</span><div class="'+(item.is_like?'heart-liked':'heart')+'" alt="Like"/></div></a></div><div style="clear: both"></div></div></div></a></div></div>';
+
+            var $items = $(html);
+            grid_table.append($items).masonry('appended', $items);
+        }
+        else if(item.type == "3"){  //magazine
+
+                var html =  '<div class="grid-item"><div class="card menu-category" style="background: white;"><a  target="_blank" href="https://www.stumagz.com/'+
+                            item.link+
+                        '/"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
+                            item.cover+
+                        'coverpic)"></div><div class="outer"><div><img class="interior1" src="http://cdn.stumagz.com/images/'+
+                            item.profile+
+                        'profilepic" style="border-radius:6px;border:2px solid #fff;background-color:#fff"></div><div class="interior2"><div><div class="collegenme" style="color: rgba(0,0,0,0.75); font-weight: bold;"><h3>'+
+                            item.title+
+                        '</h3></div><div class="place" style="text-align:center"><p style="text-align:center">'+
+                            (item.city?item.city:'NA')+
+                        '</p></div></div><div class="interior3"><a  target="_blank" href="https://www.stumagz.com/'+
+                            item.link+
+                        '/">View Magazine</a></div><div style="clear: both"></div></div></a></div></div>';
+            var $items = $(html);
+            grid_table.append($items).masonry('appended', $items);
+        }
+        else if(item.type == "6"){  //task i.e., oppertinity
+                    var html = '<div class="grid-item"><div class="card menu-category" style="background: white;"><a target="_blank" href="https://www.stumagz.com/'+
+                    item.link+"/"+
+                '"><div class="coverpic" style="background-image: url(http://cdn.stumagz.com/images/'+
+                    item.cover+
+                'stryimg)"><p class="tile-category"><span>'+
+                    item.category+
+                '</span></p></div><div class="outer"><div class="inner1"><div class="story_title"><h2>'+
+                    (item.title?item.title:'')+
+                '</h2></div><div class="description"><p>'+
+                    (item.descr?item.descr.substring(0,100):'')+
+                '</p></div></div><div class="inner2"><div  style="width:73%;overflow:hidden; float:left;"><div style="float:left"><img class="image-details" src="http://cdn.stumagz.com/images/'+
+                    item.auth.profile+
+                'profilepic"></div><div style="padding-left: 45px"><div class="author_name"><h4>'+
+                    item.auth.title.substring(0,20)+
+                '</h4></div><div class="clgname"><p>'+
+                (item.auth.home_magz_name?item.auth.home_magz_name:(item.magz?item.magz.title:'Other'))+
+                '</p></div></div></div><div style="width:25%; overflow:hidden; float:right;margin-top:15px;text-align:center;"><span style="margin-right:5px;">'+
+                    formatLikeCount(item.like_count)+
+                '</span><img style="height:20px" src="https://www.stumagz.com/public/img/'+(item.is_like?'applied':'apply')+'.svg" alt="Like"/></div><div style="clear: both"></div></div></div></a></div></div>';
+        
+        var $items = $(html);
+        grid_table.append($items).masonry('appended', $items);
+        }
+
+    });
+}
+
+
+function formatLikeCount(count)
+{
+    if(count < 0)
+         return 0;
+     if(count < 1000)
+        return count;
+     if(count < 10000)
+            return (count/1000).toFixed(2)+"k";
+     if(count < 100000)
+            return (count/1000).toFixed(1)+"k";
+    return (count/1000).toFixed(0)+"k";
+}
+
+function getStumagzDate(UNIX_timestamp)
+{
+    /*var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var date = new Date(d);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    return monthNames[monthIndex] +' ' + day;*/
+    console.log("preparing time");
+    var a = new Date(UNIX_timestamp * 1000);
+     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var year = a.getFullYear();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes();
+      var time = date + ' ' + month + ' ' + year + ' ' + (hour<10?'0':'')+(hour%12)+':'+(min<10?'0':'')+min+' '+(hour>11?'PM':'AM');
+      return time;
+}
+
+function getStumagzEventDate(d)
+{
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var date = new Date(d);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    return monthNames[monthIndex] +' ' + day;
+}
+
+
+
+function linkify(news_text)
+{
+    var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    var text1=news_text.replace(exp, "<a target='_blank' href='$1'>$1</a>");
+    var exp2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    return text1.replace(exp2, "$1<a target='_blank' rel='external nofollow' href='http://$2' style='color:blue;'>$2</a>");
+
+}
+
+function getStumagzNewsDate(UNIX_timestamp)
+{
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var date = new Date(UNIX_timestamp*1000);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    return day+' '+monthNames[monthIndex]+' '+year+'  '+(hour%12)+':'+(min < 10 ? '0'+min : min )+' '+(hour>11?'PM':'AM');
+}
+
+
+
+
+function getStumagzShortDate(UNIX_timestamp)
+{
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var date = new Date(UNIX_timestamp*1000);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    return day+' '+monthNames[monthIndex]+' '+year; //+' . '+(hour%12)+':'+min+' '+(hour>11?'PM':'AM');
+
+}
+function getStumagzDate(d)
+{
+    var monthNames = [
+                      "Jan", "Feb", "Mar",
+                      "Apr", "May", "June", "July",
+                      "Aug", "Sept", "Oct",
+                      "Nov", "Dec"
+                    ];
+
+    var date = new Date(d);
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+
+    return monthNames[monthIndex] +' ' + day;
+}
+
+
+        </script>
+
+
+
+
+
+
+
+<script>
+
+ // script for loading all jobs / opportunities
+$(function() {
+
+    //prepare global variables for ajax / infinite scroll
+
+    // initialize masonry
+    $('#masonry-grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth:'.grid-sizer',
+        percentPosition: true,
+        hiddenStyle: { opacity: 0 },
+        visibleStyle: { opacity: 1 }
+    });
+
+        $.ajax({
+                            url: "/api/cc/task/collegeconnect/",
+                            type: "POST",
+                            dataType: 'json',
+                            success: function(msg)
+                            {
+                                if(msg.result == 1 && msg.message.length > 0)
+                                {
+                                    //$("#masonry-grid").append(
+                                    parseTiles(msg.message,$("#masonry-grid"));
+                                }
+                                                }
+                        });
+                
+});
+
+</script>
     </body>
 </html>
